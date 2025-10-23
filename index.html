@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Maharashtrian Thali | Home</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
@@ -47,6 +49,26 @@
             width: 100%;
             flex-shrink: 0;
         }
+        
+       .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+.footer-column {
+    flex: 1 1 250px;
+    min-width: 200px;
+}
+
+/* Remove fixed width from .foot */
+.foot {
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
         
         .container {
             width: 100%;
@@ -99,11 +121,11 @@
 }
 </style>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     <!-- Header -->
     <header>
-        <div class="container">
-            <div class="header-content">
+        <div class="container px-0 px-md-3">
+            <div class="page-wrapper container-fluid px-0 flex-grow-1">
                 <a href="index.html" class="logo">
                     <img src="images/logo.png" alt="Maharashtrian Thali" class="logo-img">
                 </a>
@@ -129,36 +151,51 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Authentic Maharashtrian Cuisine</h1>
-            <p>Experience the rich and diverse flavors of Maharashtra with our traditional recipes passed down through generations.</p>
-            <a href="menu.html" class="btn">View Our Menu</a>
+    <section class="hero position-relative overflow-hidden">
+        <div class="hero-content position-relative z-index-1 text-center text-white p-4">
+            <div class="container">
+                <h1 class="display-4 fw-bold mb-3">Authentic Maharashtrian Cuisine</h1>
+                <p class="lead mb-4">Experience the rich and diverse flavors of Maharashtra with our traditional recipes passed down through generations.</p>
+                <a href="menu.html" class="btn btn-primary btn-lg px-4">View Our Menu</a>
+            </div>
         </div>
+        <div class="hero-overlay position-absolute top-0 start-0 w-100 h-100"></div>
     </section>
 
     <!-- Featured Dishes -->
-    <section class="featured-dishes">
+    <section class="featured-dishes py-5">
         <div class="container">
-            <div class="section-title">
-                <h2>Our Specialties</h2>
-                <p>Discover our most loved dishes</p>
+            <div class="section-title text-center mb-5">
+                <h2 class="display-5 fw-bold mb-2">Our Specialties</h2>
+                <p class="lead">Discover our most loved dishes</p>
             </div>
-            <div class="dishes-grid">
-                <div class="dish-card">
-                    <img src="images/thali.jpg" alt="Maharashtrian Thali">
-                    <h3>Maharashtrian Thali</h3>
-                    <p>A complete meal with various curries, bread, rice, and desserts.</p>
+            <div class="row g-4">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <img src="images/thali.jpg" class="card-img-top img-fluid" alt="Maharashtrian Thali" style="height: 200px; object-fit: cover;">
+                        <div class="card-body text-center">
+                            <h3 class="h5 fw-bold">Maharashtrian Thali</h3>
+                            <p class="card-text">A complete meal with various curries, bread, rice, and desserts.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="dish-card">
-                    <img src="images/puran-poli.jpg" alt="Puran Poli">
-                    <h3>Puran Poli</h3>
-                    <p>Sweet flatbread stuffed with lentils and jaggery.</p>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <img src="images/puran-poli.jpg" class="card-img-top img-fluid" alt="Puran Poli" style="height: 200px; object-fit: cover;">
+                        <div class="card-body text-center">
+                            <h3 class="h5 fw-bold">Puran Poli</h3>
+                            <p class="card-text">Sweet flatbread stuffed with lentils and jaggery.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="dish-card">
-                    <img src="images/vada-pav.jpg" alt="Vada Pav">
-                    <h3>Vada Pav</h3>
-                    <p>Spicy potato fritter in a bun with chutneys.</p>
+                <div class="col-12 col-md-6 col-lg-4 mx-auto">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <img src="images/vada-pav.jpg" class="card-img-top img-fluid" alt="Vada Pav" style="height: 200px; object-fit: cover;">
+                        <div class="card-body text-center">
+                            <h3 class="h5 fw-bold">Vada Pav</h3>
+                            <p class="card-text">Spicy potato fritter in a bun with chutneys.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -166,7 +203,7 @@
 
     <!-- About Section -->
     <section class="about-preview">
-        <div class="container">
+        <div class="container px-0 px-md-3">
             <div class="about-content">
                 <div class="about-text">
                     <h2>Our Story</h2>
@@ -182,7 +219,7 @@
 
     <!-- Testimonials -->
     <section class="testimonials">
-        <div class="container">
+        <div class="container px-0 px-md-3">
             <div class="section-title">
                 <h2>What Our Customers Say</h2>
                 <p>Hear from our valued customers</p>
@@ -201,8 +238,8 @@
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
+    <footer class="bg-dark text-white py-5 mt-auto">
+        <div class="container px-0 px-md-3">
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>Maharashtrian Thali</h3>
@@ -231,11 +268,11 @@
                     <p><i class="fas fa-envelope"></i> Maharashtrianthali@gmail.com</p>
                 </div>
                 <div class="footer-column">
-                    <div class = "foot">
+                    
                     <h3>Opening Hours</h3>
                     <p>Monday - Friday: 11:00 AM - 01:00 AM</p>
                     <p>Saturday - Sunday: 11:00 AM - 12:00 PM</p>
-                    </div>
+                    
                 </div>
             </div>
             <div class="copyright">

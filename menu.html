@@ -106,12 +106,42 @@
         }
         
         .menu-tabs {
-            background: #f9f9f9;
-            padding: 20px 0;
-            position: sticky;
-            top: 70px;
-            z-index: 10;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed; /* ← This is the key change */
+            top: 100px; /* Adjust if needed — measure your header height (~98px logo + padding) */
+            left: 0;
+            right: 0;
+            background: #fff; /* Or #f9f9f9 if you prefer the lighter look */
+            z-index: 900;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+            width: 100%;
+        }
+
+        .tabs-scroll-container {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 8px;
+        }
+
+        /* Keep your nice thin/hidden scrollbar styles */
+        .tabs-scroll-container::-webkit-scrollbar {
+            height: 6px;
+        }
+        .tabs-scroll-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .tabs-scroll-container::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        .tabs-scroll-container::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        .tabs-scroll-container {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: thin;  /* Firefox */
         }
         
         .tabs-container {
@@ -388,21 +418,22 @@
     <!-- Menu Tabs -->
     <section class="menu-tabs">
         <div class="container px-0 px-md-3">
-            <div class="page-wrapper container-fluid px-0 flex-grow-1">
-                <button class="tab-btn active" data-category="Maharashtrian Thali">Maharashtrian Thali</button>
-                <button class="tab-btn" data-category="Paneer Special">Paneer Special</button>
-                <button class="tab-btn" data-category="Punjabi Special Bhaji">Punjabi Special Bhaji</button>
-                <button class="tab-btn" data-category="Maharashtrian Bhaji">Maharashtrian Bhaji</button>
-                <button class="tab-btn" data-category="Kaju Special">Kaju Special</button>
-                <button class="tab-btn" data-category="Starter">Starter</button>
-                <button class="tab-btn" data-category="Dal Special">Dal Special</button>
-                <button class="tab-btn" data-category="Rice Special">Rice Special</button>
-                <button class="tab-btn" data-category="Extra">Extra</button>
-                <button class="tab-btn" data-category="Veg Special">Veg Special</button>
-                <button class="tab-btn" data-category="Maharashtrian Poli">Maharashtrian Poli</button>
-                <button class="tab-btn" data-category="Roti Special">Roti Special</button>
-                <button class="tab-btn" data-category="Cold drinks">Cold drinks</button>
-
+            <div class="tabs-scroll-container">
+                <div class="tabs-wrapper">
+                    <button class="tab-btn active" data-category="Maharashtrian Thali">Maharashtrian Thali</button>
+                    <button class="tab-btn" data-category="Paneer Special">Paneer Special</button>
+                    <button class="tab-btn" data-category="Punjabi Special Bhaji">Punjabi Special Bhaji</button>
+                    <button class="tab-btn" data-category="Maharashtrian Bhaji">Maharashtrian Bhaji</button>
+                    <button class="tab-btn" data-category="Kaju Special">Kaju Special</button>
+                    <button class="tab-btn" data-category="Starter">Starter</button>
+                    <button class="tab-btn" data-category="Dal Special">Dal Special</button>
+                    <button class="tab-btn" data-category="Rice Special">Rice Special</button>
+                    <button class="tab-btn" data-category="Extra">Extra</button>
+                    <button class="tab-btn" data-category="Veg Special">Veg Special</button>
+                    <button class="tab-btn" data-category="Maharashtrian Poli">Maharashtrian Poli</button>
+                    <button class="tab-btn" data-category="Roti Special">Roti Special</button>
+                    <button class="tab-btn" data-category="Cold drinks">Cold Drinks</button>
+                </div>
             </div>
         </div>
     </section>
@@ -1747,41 +1778,87 @@
 
     <script src="js/main.js"></script>
     <script>
-        // Tab functionality
         document.addEventListener('DOMContentLoaded', function() {
             const tabBtns = document.querySelectorAll('.tab-btn');
             const menuCategories = document.querySelectorAll('.menu-category');
-            
+            const tabsContainer = document.querySelector('.tabs-scroll-container');
+            let isScrolling = false;
+            let scrollTimeout;
+
+            // Function to update active tab based on scroll position
+            function updateActiveTab() {
+                if (isScrolling) return;
+                
+                const scrollPosition = window.scrollY + 200; // Adjust offset as needed
+                
+                menuCategories.forEach(category => {
+                    const categoryTop = category.offsetTop;
+                    const categoryHeight = category.offsetHeight;
+                    
+                    if (scrollPosition >= categoryTop && scrollPosition < (categoryTop + categoryHeight)) {
+                        const categoryId = category.getAttribute('id');
+                        const correspondingBtn = document.querySelector(`.tab-btn[data-category="${categoryId}"]`);
+                        
+                        if (correspondingBtn && !correspondingBtn.classList.contains('active')) {
+                            // Remove active class from all buttons
+                            tabBtns.forEach(btn => btn.classList.remove('active'));
+                            // Add active class to current button
+                            correspondingBtn.classList.add('active');
+                            
+                            // Scroll the tab into view if it's not fully visible
+                            const containerRect = tabsContainer.getBoundingClientRect();
+                            const btnRect = correspondingBtn.getBoundingClientRect();
+                            
+                            if (btnRect.right > containerRect.right) {
+                                // Button is off-screen to the right
+                                tabsContainer.scrollLeft += (btnRect.right - containerRect.right) + 20;
+                            } else if (btnRect.left < containerRect.left) {
+                                // Button is off-screen to the left
+                                tabsContainer.scrollLeft -= (containerRect.left - btnRect.left) + 20;
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Click handler for tab buttons
             tabBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // Remove active class from all buttons
-                    tabBtns.forEach(b => b.classList.remove('active'));
-                    // Add active class to clicked button
-                    this.classList.add('active');
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const categoryId = this.getAttribute('data-category');
+                    const targetCategory = document.getElementById(categoryId);
                     
-                    // Get the category to show
-                    const category = this.getAttribute('data-category');
-                    
-                    // Hide all categories
-                    menuCategories.forEach(cat => {
-                        cat.style.display = 'none';
-                    });
-                    
-                    // Show selected category
-                    if (category) {
-                        document.getElementById(category).scrollIntoView({ behavior: 'smooth' });
-                        // Show the category after a small delay for smooth scrolling
-                        setTimeout(() => {
-                            document.getElementById(category).style.display = 'block';
-                        }, 500);
-                    } else {
-                        // Show all categories if 'All' is selected
-                        menuCategories.forEach(cat => {
-                            cat.style.display = 'block';
+                    if (targetCategory) {
+                        isScrolling = true;
+                        
+                        // Update active class
+                        tabBtns.forEach(b => b.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        // Smooth scroll to the category
+                        window.scrollTo({
+                            top: targetCategory.offsetTop - 100, // Adjust offset as needed
+                            behavior: 'smooth'
                         });
+                        
+                        // Reset scrolling flag after scroll is complete
+                        clearTimeout(scrollTimeout);
+                        scrollTimeout = setTimeout(() => {
+                            isScrolling = false;
+                        }, 1000);
                     }
                 });
             });
+            
+            // Add scroll event listener for updating active tab
+            window.addEventListener('scroll', () => {
+                if (!isScrolling) {
+                    updateActiveTab();
+                }
+            });
+            
+            // Initial update of active tab
+            updateActiveTab();
             
             // Add to cart functionality
             const addToCartButtons = document.querySelectorAll('.add-to-cart');

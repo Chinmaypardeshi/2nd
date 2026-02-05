@@ -1,15 +1,88 @@
 /* Global Styles */
+/* Theme Options - Uncomment your preferred theme */
+
+/* Theme 1: Royal Maharashtrian (Default) */
 :root {
-    --primary-color: #e67e22;
-    --secondary-color: #2c3e50;
-    --accent-color: #f1c40f;
-    --light-color: #ecf0f1;
-    --dark-color: #2c3e50;
-    --text-color: #333;
-    --text-light: #7f8c8d;
+    --primary-color: #ea580c;
+    --secondary-color: #c2410c;
+    --accent-color: #fbbf24;
+    --light-color: #fff7ed;
+    --dark-color: #1f2937;
+    --text-color: #374151;
+    --text-light: #6b7280;
     --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     --transition: all 0.3s ease;
 }
+
+/* Theme 2: Elegant Purple
+:root {
+    --primary-color: #7c3aed;
+    --secondary-color: #6d28d9;
+    --accent-color: #fbbf24;
+    --light-color: #f3e8ff;
+    --dark-color: #1f2937;
+    --text-color: #374151;
+    --text-light: #6b7280;
+    --box-shadow: 0 5px 15px rgba(124, 58, 237, 0.15);
+    --transition: all 0.3s ease;
+}
+*/
+
+/* Theme 3: Fresh Green
+:root {
+    --primary-color: #059669;
+    --secondary-color: #047857;
+    --accent-color: #fbbf24;
+    --light-color: #ecfdf5;
+    --dark-color: #1f2937;
+    --text-color: #374151;
+    --text-light: #6b7280;
+    --box-shadow: 0 5px 15px rgba(5, 150, 105, 0.15);
+    --transition: all 0.3s ease;
+}
+*/
+
+/* Theme 4: Rich Blue
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #1d4ed8;
+    --accent-color: #fbbf24;
+    --light-color: #eff6ff;
+    --dark-color: #1f2937;
+    --text-color: #374151;
+    --text-light: #6b7280;
+    --box-shadow: 0 5px 15px rgba(37, 99, 235, 0.15);
+    --transition: all 0.3s ease;
+}
+*/
+
+/* Theme 5: Warm Red
+:root {
+    --primary-color: #dc2626;
+    --secondary-color: #b91c1c;
+    --accent-color: #fbbf24;
+    --light-color: #fef2f2;
+    --dark-color: #1f2937;
+    --text-color: #374151;
+    --text-light: #6b7280;
+    --box-shadow: 0 5px 15px rgba(220, 38, 38, 0.15);
+    --transition: all 0.3s ease;
+}
+*/
+
+/* Theme 6: Teal Modern
+:root {
+    --primary-color: #0891b2;
+    --secondary-color: #0e7490;
+    --accent-color: #fbbf24;
+    --light-color: #ecfeff;
+    --dark-color: #1f2937;
+    --text-color: #374151;
+    --text-light: #6b7280;
+    --box-shadow: 0 5px 15px rgba(8, 145, 178, 0.15);
+    --transition: all 0.3s ease;
+}
+*/
 
 * {
     margin: 0;
@@ -52,8 +125,8 @@
 }
 
 @keyframes subtlePulse {
-    0%, 100% { box-shadow: 0 5px 20px rgba(230, 126, 34, 0.35); }
-    50% { box-shadow: 0 8px 28px rgba(230, 126, 34, 0.5); }
+    0%, 100% { box-shadow: 0 5px 20px rgba(234, 88, 12, 0.35); }
+    50% { box-shadow: 0 8px 28px rgba(234, 88, 12, 0.5); }
 }
 
 @keyframes floatIn {
@@ -214,7 +287,7 @@
 
 /* Testimonials section */
 .testimonials {
-    background: linear-gradient(180deg, #fdf8f3 0%, #fff 100%);
+    background: linear-gradient(180deg, #fff7ed 0%, #fed7aa 100%);
     padding: 80px 0;
 }
 
@@ -237,7 +310,7 @@
     border-radius: 16px;
     padding: 28px 24px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-    border: 1px solid rgba(230, 126, 34, 0.08);
+    border: 1px solid rgba(234, 88, 12, 0.08);
     transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
     display: flex;
     flex-direction: column;
@@ -246,11 +319,11 @@
 .testimonial-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
-    border-color: rgba(230, 126, 34, 0.2);
+    border-color: rgba(234, 88, 12, 0.2);
 }
 
 .testimonial-stars {
-    color: #f1c40f;
+    color: #fbbf24;
     font-size: 0.95rem;
     letter-spacing: 2px;
     margin-bottom: 14px;
@@ -291,7 +364,7 @@
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--primary-color), #d35400);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: #fff;
     font-weight: 700;
     font-size: 1.1rem;
@@ -343,7 +416,26 @@ html {
 body {
     line-height: 1.6;
     color: var(--text-color);
-    background-color: #fff;
+    /* Theme 1: Royal Maharashtrian Gradient - Enhanced */
+    background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 30%, #fdba74 60%, #ffedd5 100%);
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Add subtle pattern overlay for royal texture */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(234, 88, 12, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(251, 191, 36, 0.04) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(234, 88, 12, 0.02) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
 }
 
 .container {
@@ -353,16 +445,18 @@ body {
     padding: 0 10px; /* Reduced horizontal padding */
 }
 
-/* Menu Tabs */
+/* Menu Tabs - Royal Maharashtrian Enhanced */
 .menu-tabs {
     position: fixed;
     top: 80px;
     left: 0;
     right: 0;
-    background: #fff;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 247, 237, 0.95) 100%);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--primary-color);
     z-index: 900;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 10px 0;
+    box-shadow: 0 4px 20px rgba(234, 88, 12, 0.15);
+    padding: 12px 0;
     width: 100%;
 }
 
@@ -371,19 +465,24 @@ body {
     padding-top: 140px;
 }
 
-/* Menu Item Styles */
+/* Menu Item Styles - Royal Enhanced */
 .menu-item {
-    background: #fff;
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 247, 237, 0.98) 100%);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 8px 32px rgba(234, 88, 12, 0.12);
+    border: 1px solid rgba(234, 88, 12, 0.1);
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    overflow: hidden;
 }
 
 .menu-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 16px 48px rgba(234, 88, 12, 0.2);
+    border-color: var(--primary-color);
 }
 
 .menu-item-content {
@@ -457,29 +556,33 @@ body {
 }
 
 .tab-btn {
-    background: #f8f9fa;
-    border: 1px solid #dee2e6;
-    color: #495057;
-    padding: 8px 20px;
+    background: linear-gradient(135deg, #ffffff 0%, #fff7ed 100%);
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 10px 24px;
     border-radius: 50px;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     white-space: nowrap;
     cursor: pointer;
     transition: all 0.3s ease;
     outline: none;
+    box-shadow: 0 2px 8px rgba(234, 88, 12, 0.1);
 }
 
 .tab-btn:hover {
-    background: #e9ecef;
-    border-color: #ced4da;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(234, 88, 12, 0.3);
 }
 
 .tab-btn.active {
-    background: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     color: white;
     border-color: var(--primary-color);
-    box-shadow: 0 4px 8px rgba(230, 126, 34, 0.2);
+    box-shadow: 0 6px 20px rgba(234, 88, 12, 0.4);
+    transform: translateY(-2px);
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -509,15 +612,16 @@ body {
 
 /* Header & Navigation */
 header {
-    background-color: #fff;
+    background-color: #1e3a8a;
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
     z-index: 1000;
-    box-shadow: var(--box-shadow);
+    box-shadow: 0 4px 20px rgba(30, 58, 138, 0.3);
     padding: 5px 0;
     animation: slideDown 0.6s ease-out;
+    border-bottom: 2px solid var(--primary-color);
 }
 
 .header-content {
@@ -540,7 +644,7 @@ header {
     cursor: pointer;
     z-index: 1001;
     font-size: 24px;
-    color: var(--dark-color);
+    color: #ffffff;
     transition: transform 0.3s ease;
     width: 30px;
     height: 24px;
@@ -594,7 +698,7 @@ header {
 }
 
 .main-nav a {
-    color: var(--dark-color);
+    color: #ffffff;
     text-decoration: none;
     font-weight: 500;
     transition: var(--transition);
@@ -640,8 +744,8 @@ header {
         width: 70%;
         max-width: 300px;
         height: 100vh;
-        background: #fff;
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        box-shadow: -5px 0 15px rgba(234, 88, 12, 0.3);
         transition: 0.3s ease-in-out;
         z-index: 1000;
         padding: 80px 20px 40px;
@@ -667,6 +771,7 @@ header {
         display: block;
         padding: 10px 0;
         font-size: 1.1rem;
+        color: #ffffff;
     }
     
     .main-nav a:after {
@@ -710,7 +815,7 @@ header {
 }
 
 .main-nav ul li a {
-    color: var(--dark-color);
+    color: #ffffff;
     text-decoration: none;
     padding: 12px 20px;
     font-weight: 600;
@@ -735,7 +840,7 @@ header {
 
 .main-nav ul li a:hover {
     color: var(--primary-color);
-    background: rgba(230, 126, 34, 0.08);
+    background: rgba(234, 88, 12, 0.08);
     transform: translateY(-2px);
 }
 
@@ -746,7 +851,7 @@ header {
 .main-nav ul li a.active {
     color: #fff;
     background: var(--primary-color);
-    box-shadow: 0 4px 12px rgba(230, 126, 34, 0.3);
+    box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3);
 }
 
 .main-nav ul li a.active::before {
@@ -820,7 +925,7 @@ header {
 }
 
 .btn:hover {
-    background: #d35400;
+    background: #c2410c;
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
